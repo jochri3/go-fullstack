@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 //ROUTES
 const stuffRoutes = require('./routes/stuff');
 const userRoutes = require('./routes/user');
+const path = require('path');
 
 //CONNECTION DATABASE
 mongoose.connect('mongodb+srv://aarnow:YKZzIwJXN8zTJ2Rx@cluster0-goojt.mongodb.net/test?retryWrites=true&w=majority',
@@ -26,6 +27,7 @@ app.use(cors()); // l'appel du package CORS remplace le code ci-dessous
 
 app.use(bodyParser.json());
 
+app.use('/images', express.static(path.join(__dirname, 'images')));
 app.use('/api/stuff', stuffRoutes);
 app.use('/api/auth', userRoutes);
 
